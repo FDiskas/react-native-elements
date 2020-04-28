@@ -1,5 +1,10 @@
 import React from 'react';
-import { ActivityIndicator, View, StyleSheet } from 'react-native';
+import {
+  ActivityIndicator,
+  View,
+  StyleSheet,
+  ActivityIndicatorProps,
+} from 'react-native';
 
 import { renderNode } from '../helpers';
 import Input from '../input/Input';
@@ -21,7 +26,7 @@ type SearchBarProps = {
   value?: string;
   clearIcon?: any;
   searchIcon?: any;
-  loadingProps?: object;
+  loadingProps?: ActivityIndicatorProps;
   showLoading?: boolean;
   containerStyle?: any;
   leftIconContainerStyle?: any;
@@ -61,13 +66,16 @@ class SearchBar extends React.Component<SearchBarProps, SearchBarState> {
     };
   }
   focus = () => {
-    this.input.current.focus();
+    if (this.input.current) {
+      this.input.current.focus();
+    }
   };
   blur = () => {
-    this.input.current.blur();
+    if (this.input.current) {
+      this.input.current.blur();
+    }
   };
   clear = () => {
-    this.input.current.clear();
     this.onChangeText('');
     if (this.props.onClear) {
       this.props.onClear();

@@ -38,6 +38,7 @@ import {
   ThemeConsumer,
   ThemeContext,
   withTheme,
+  BackgroundImage,
 } from './config';
 import getIconType, { registerCustomIconType } from './helpers/getIconType';
 import normalize from './helpers/normalizeText';
@@ -75,4 +76,5 @@ export {
   withBadge,
   withTheme,
   Image,
+  BackgroundImage,
 };

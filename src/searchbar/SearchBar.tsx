@@ -10,36 +10,37 @@ const SEARCHBAR_COMPONENTS = {
   default: DefaultSearchBar,
 };
 type SearchBarProps = {
-  platform?: 'default' | 'ios' | 'android';
+  platform: 'default' | 'ios' | 'android';
 };
 class SearchBar extends React.Component<SearchBarProps, {}> {
-  searchbar: InstanceType<typeof DefaultSearchBar>;
+  searchbar = React.createRef<SearchBar>();
   static defaultProps = {
     platform: 'default',
   };
   focus = () => {
-    this.searchbar.focus();
+    if (this.searchbar.current) {
+      this.searchbar.current.focus();
+    }
   };
   blur = () => {
-    this.searchbar.blur();
+    if (this.searchbar.current) {
+      this.searchbar.current.blur();
+    }
   };
   clear = () => {
-    this.searchbar.clear();
+    if (this.searchbar.current) {
+      this.searchbar.current.clear();
+    }
   };
   cancel = () => {
-    this.searchbar.cancel && this.searchbar.cancel();
+    if (this.searchbar.current && this.searchbar.current.cancel) {
+      this.searchbar.current.cancel();
+    }
   };
   render() {
     const Component =
       SEARCHBAR_COMPONENTS[this.props.platform] || DefaultSearchBar;
-    return (
-      <Component
-        ref={(ref) => {
-          this.searchbar = ref;
-        }}
-        {...this.props}
-      />
-    );
+    return <Component ref={this.searchbar} {...this.props} />;
   }
 }
 

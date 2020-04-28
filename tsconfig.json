@@ -3,7 +3,9 @@
     "baseUrl": "./",
     "rootDir": "src",
     "outDir": "dist",
+    "noEmit": true,
     "emitDecoratorMetadata": true,
+    "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
     "esModuleInterop": true,
     "module": "commonjs",
@@ -28,5 +30,6 @@
       "@src/*": ["src/*"]
     }
   },
+  "include": ["src/*", "types.d.ts"],
   "exclude": ["dist", "__tests__", "coverage"]
 }

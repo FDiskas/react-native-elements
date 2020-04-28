@@ -1,5 +1,12 @@
 import * as React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  ViewComponent,
+  TouchableOpacityComponent,
+} from 'react-native';
 
 import { withTheme } from '../config';
 import { renderNode } from '../helpers';
@@ -9,7 +16,7 @@ type BadgeProps = {
   textStyle?: any;
   value?: React.ReactNode;
   onPress?: (...args: any[]) => any;
-  Component?: React.ReactNode;
+  Component?: TouchableOpacityComponent | ViewComponent;
   theme?: object;
   status?: 'primary' | 'success' | 'warning' | 'error';
 };

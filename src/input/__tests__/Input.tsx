@@ -138,9 +138,9 @@ describe('Input component', () => {
     it('should focus the input', () => {
       const focus = jest.fn();
       const component = shallow(<Input theme={theme} />);
-      const instance = component.instance();
+      const instance =  component.instance() as Input;
       // Refs not available in shallow render
-      instance.input = {
+      instance.input.current = {
         focus,
       };
       instance.focus();
@@ -149,9 +149,9 @@ describe('Input component', () => {
     it('should clear the input', () => {
       const clear = jest.fn();
       const component = shallow(<Input theme={theme} defaultValue="My Text" />);
-      const instance = component.instance();
+      const instance =  component.instance() as Input;
       // Refs not available in shallow render
-      instance.input = {
+       instance.input.current = {
         clear,
       };
       instance.clear();
@@ -160,9 +160,9 @@ describe('Input component', () => {
     it('should blur the input', () => {
       const blur = jest.fn();
       const component = shallow(<Input theme={theme} />);
-      const instance = component.instance();
+      const instance = component.instance() as Input;
       // Refs not available in shallow render
-      instance.input = {
+      instance.input.current = {
         blur,
       };
       instance.blur();
@@ -171,9 +171,9 @@ describe('Input component', () => {
     it('should call isFocused', () => {
       const isFocused = () => true;
       const component = shallow(<Input theme={theme} />);
-      const instance = component.instance();
+      const instance = component.instance() as Input;
       // Refs not available in shallow render
-      instance.input = {
+       instance.input.current = {
         isFocused,
       };
       expect(instance.isFocused()).toBe(true);
@@ -181,8 +181,8 @@ describe('Input component', () => {
     it('should call setNativeProps', () => {
       const setNativeProps = jest.fn();
       const component = shallow(<Input theme={theme} />);
-      const instance = component.instance();
-      instance.input = {
+      const instance = component.instance() as Input;
+       instance.input.current = {
         setNativeProps,
       };
       instance.setNativeProps({ text: '' });
@@ -200,7 +200,7 @@ describe('Input component', () => {
           interpolate: jest.fn(),
         })),
       }));
-      const instance = component.instance();
+      const instance =  component.instance() as Input;
       instance.shake();
       jest.dontMock('Animated');
     });

@@ -27,7 +27,7 @@ export type InputProps = {
   rightIcon?: any;
   rightIconContainerStyle?: any;
   inputStyle?: any;
-  InputComponent?: JSX.Element;
+  InputComponent?: TextInput;
   errorProps?: object;
   errorStyle?: any;
   errorMessage?: string;
@@ -37,21 +37,37 @@ export type InputProps = {
   theme?: object;
 };
 class Input extends React.Component<InputProps, {}> {
+  input = React.createRef<TextInput>();
   shakeAnimationValue = new Animated.Value(0);
+  static defaultProps = {
+    InputComponent: TextInput,
+  };
   focus() {
-    this.input.focus();
+    if (this.input.current) {
+      this.input.current.focus();
+    }
   }
   blur() {
-    this.input.blur();
+    if (this.input.current) {
+      this.input.current.blur();
+    }
   }
   clear() {
-    this.input.clear();
+    if (this.input.current) {
+      this.input.current.clear();
+    }
   }
   isFocused() {
-    return this.input.isFocused();
+    if (this.input.current) {
+      return this.input.current.isFocused();
+    }
+
+    return false;
   }
   setNativeProps(nativeProps) {
-    this.input.setNativeProps(nativeProps);
+    if (this.input.current) {
+      this.input.current.setNativeProps(nativeProps);
+    }
   }
   shake = () => {
     const { shakeAnimationValue } = this;
@@ -61,7 +77,7 @@ class Input extends React.Component<InputProps, {}> {
     Animated.timing(shakeAnimationValue, {
       duration: 375,
       toValue: 3,
-      ease: Easing.bounce,
+      easing: Easing.bounce,
     }).start();
   };
   render() {
@@ -120,9 +136,7 @@ class Input extends React.Component<InputProps, {}> {
             underlineColorAndroid="transparent"
             editable={!disabled}
             {...patchWebProps(attributes)}
-            ref={(ref) => {
-              this.input = ref;
-            }}
+            ref={this.input}
             style={StyleSheet.flatten([
               styles.input,
               inputStyle,
@@ -158,9 +172,7 @@ class Input extends React.Component<InputProps, {}> {
     );
   }
 }
-Input.defaultProps = {
-  InputComponent: TextInput,
-};
+
 const styles = {
   container: {
     width: '100%',

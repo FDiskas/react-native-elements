@@ -1,7 +1,16 @@
 import * as React from 'react';
-import { TouchableOpacity, View, StyleSheet, Dimensions } from 'react-native';
+import {
+  TouchableOpacity,
+  View,
+  StyleSheet,
+  Dimensions,
+  ImageBackground,
+  ImageProps,
+  ImageBackgroundProps,
+  ImageURISource,
+} from 'react-native';
 
-import { BackgroundImage, withTheme } from '../config';
+import { withTheme } from '../config';
 import { renderNode } from '../helpers';
 import Text from '../text/Text';
 import Icon from '../icons/Icon';
@@ -14,7 +23,7 @@ type FeaturedTileProps = {
   title?: string;
   icon?: object;
   caption?: React.ReactNode;
-  imageSrc?: any;
+  imageSrc: ImageURISource;
   onPress?: (...args: any[]) => any;
   containerStyle?: any;
   iconContainerStyle?: any;
@@ -24,8 +33,8 @@ type FeaturedTileProps = {
   captionStyle?: any;
   width?: number;
   height?: number;
-  ImageComponent?: React.ReactNode;
-  imageProps?: object;
+  ImageComponent: React.ComponentClass<ImageBackgroundProps>;
+  imageProps?: ImageProps;
 };
 const FeaturedTile: React.SFC<FeaturedTileProps> = (props) => {
   const {
@@ -130,8 +139,7 @@ const FeaturedTile: React.SFC<FeaturedTileProps> = (props) => {
   );
 };
 FeaturedTile.defaultProps = {
-  ImageComponent: BackgroundImage,
-  imageProps: {},
+  ImageComponent: ImageBackground,
 };
 export { FeaturedTile };
 export default withTheme(FeaturedTile, 'FeaturedTile');

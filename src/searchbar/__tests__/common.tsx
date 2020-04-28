@@ -39,9 +39,8 @@ export function commonTests(SearchBar) {
     it('focus', () => {
       const focus = jest.fn();
       const component = shallow(<SearchBar theme={theme} />);
-      const instance = component.instance();
-      // Refs not available in shallow render
-      instance.input = {
+      const instance = component.instance() as typeof SearchBar;
+      instance.input.current = {
         focus,
       };
       instance.focus();
@@ -50,9 +49,8 @@ export function commonTests(SearchBar) {
     it('blur', () => {
       const blur = jest.fn();
       const component = shallow(<SearchBar theme={theme} />);
-      const instance = component.instance();
-      // Refs not available in shallow render
-      instance.input = {
+      const instance = component.instance() as typeof SearchBar;
+      instance.input.current = {
         blur,
       };
       instance.blur();
@@ -61,9 +59,8 @@ export function commonTests(SearchBar) {
     it('clear', () => {
       const clear = jest.fn();
       const component = shallow(<SearchBar theme={theme} />);
-      const instance = component.instance();
-      // Refs not available in shallow render
-      instance.input = {
+      const instance = component.instance() as typeof SearchBar;
+      instance.input.current = {
         clear,
       };
       instance.clear();
@@ -146,9 +143,8 @@ export function commonPlatformTest(SearchBar) {
       const component = shallow(
         <SearchBar theme={theme} onCancel={onCancel} />
       );
-      const instance = component.instance();
-      // Refs not available in shallow render
-      instance.input = {
+      const instance = component.instance() as typeof SearchBar;
+      instance.input.current = {
         blur: jest.fn(),
       };
       instance.cancel();

@@ -32,7 +32,7 @@ describe('SearchBar wrapper component', () => {
       const component = shallow(<SearchBar />);
       const instance = component.instance();
       // Refs not available in shallow render
-      instance.searchbar = {
+      instance.searchbar.current = {
         focus,
       };
       instance.focus();
@@ -43,7 +43,7 @@ describe('SearchBar wrapper component', () => {
       const component = shallow(<SearchBar />);
       const instance = component.instance();
       // Refs not available in shallow render
-      instance.searchbar = {
+      instance.searchbar.current = {
         blur,
       };
       instance.blur();
@@ -54,7 +54,7 @@ describe('SearchBar wrapper component', () => {
       const component = shallow(<SearchBar />);
       const instance = component.instance();
       // Refs not available in shallow render
-      instance.searchbar = {
+      instance.searchbar.current = {
         clear,
       };
       instance.clear();
@@ -65,7 +65,7 @@ describe('SearchBar wrapper component', () => {
       const component = shallow(<SearchBar />);
       const instance = component.instance();
       // Refs not available in shallow render
-      instance.searchbar = {
+      instance.searchbar.current = {
         cancel,
       };
       instance.cancel();
