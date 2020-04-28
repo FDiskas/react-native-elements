@@ -67,7 +67,7 @@ type SliderState = {
   trackSize: any | { width: number; height: number };
   thumbSize: any | { width: number; height: number };
   allMeasured: boolean;
-  value: Value;
+  value: Animated.Value;
 };
 class Slider extends Component<SliderProps, SliderState> {
   constructor(props) {

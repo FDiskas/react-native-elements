@@ -59,7 +59,7 @@ type SocialIconProps = {
   loading?: boolean;
   activityIndicatorStyle?: any;
   small?: string;
-  iconSize?: string | number;
+  iconSize?: number;
   light?: boolean;
   fontWeight?: string;
   fontStyle?: any;
