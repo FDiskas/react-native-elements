@@ -11,7 +11,6 @@ import {
 
 import { ViewPropTypes, getStatusBarHeight, withTheme } from '../config';
 import { renderNode, nodeType } from '../helpers';
-
 import Text from '../text/Text';
 import Icon from '../icons/Icon';
 
@@ -167,7 +166,7 @@ Header.defaultProps = {
 };
 
 const styles = {
-  container: theme => ({
+  container: (theme) => ({
     borderBottomColor: '#f2f2f2',
     borderBottomWidth: StyleSheet.hairlineWidth,
     paddingHorizontal: 10,

@@ -8,6 +8,7 @@ import {
   ActivityIndicator,
   Text,
 } from 'react-native';
+
 import Input from '../input/Input';
 import Icon from '../icons/Icon';
 import { renderNode } from '../helpers';
@@ -115,7 +116,7 @@ class SearchBar extends React.Component<SearchBarProps, SearchBarState> {
       });
     }
   };
-  onChangeText = text => {
+  onChangeText = (text) => {
     this.props.onChangeText(text);
     this.setState({ isEmpty: text === '' });
   };
@@ -155,7 +156,7 @@ class SearchBar extends React.Component<SearchBarProps, SearchBarState> {
           onFocus={this.onFocus}
           onBlur={this.onBlur}
           onChangeText={this.onChangeText}
-          ref={input => {
+          ref={(input) => {
             this.input = input;
           }}
           inputStyle={StyleSheet.flatten([styles.input, inputStyle])}
@@ -204,7 +205,7 @@ class SearchBar extends React.Component<SearchBarProps, SearchBarState> {
               right: hasFocus ? 0 : -this.state.cancelButtonWidth,
             },
           ])}
-          onLayout={event =>
+          onLayout={(event) =>
             this.setState({ cancelButtonWidth: event.nativeEvent.layout.width })
           }
         >

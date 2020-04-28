@@ -1,5 +1,6 @@
 import { Platform, Dimensions } from 'react-native';
 import color from 'color';
+
 import renderNode from './renderNode';
 import getIconType from './getIconType';
 import normalizeText from './normalizeText';

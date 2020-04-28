@@ -1,5 +1,6 @@
 import React from 'react';
 import FAIcon from 'react-native-vector-icons/FontAwesome';
+
 import getIconType from '../helpers/getIconType';
 type CheckBoxIconProps = {
   checked?: boolean;

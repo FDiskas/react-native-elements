@@ -7,10 +7,12 @@ import {
   StyleSheet,
   TouchableOpacity,
   TouchableHighlight,
+  ImageProps,
 } from 'react-native';
+
 import { withTheme } from '../config';
 import { renderNode } from '../helpers';
-import Icon from '../icons/Icon';
+import Icon, { IconProps } from '../icons/Icon';
 import Image from '../image/Image';
 const avatarSizes = {
   small: 34,
@@ -36,12 +38,12 @@ type AvatarProps = {
   titleStyle?: any;
   overlayContainerStyle?: any;
   activeOpacity?: number;
-  icon?: object;
+  icon?: IconProps;
   iconStyle?: any;
-  size?: ('small' | 'medium' | 'large' | 'xlarge') | number;
-  showEditButton?: boolean;
-  onEditPress?: (...args: any[]) => any;
-  editButton?: {
+  size: ('small' | 'medium' | 'large' | 'xlarge') | number;
+  showEditButton: boolean;
+  onEditPress: (...args: any[]) => any;
+  editButton: {
     size?: number;
     name?: string;
     type?: string;
@@ -51,9 +53,10 @@ type AvatarProps = {
   };
   placeholderStyle?: any;
   renderPlaceholderContent?: any;
-  imageProps?: object;
-  ImageComponent?: React.ReactNode;
+  imageProps?: ImageProps;
+  ImageComponent: React.ReactNode;
 };
+
 const Avatar: React.SFC<AvatarProps> = ({
   onPress,
   onLongPress,
@@ -173,8 +176,8 @@ const styles = StyleSheet.create({
   },
   avatar: {
     flex: 1,
-    width: null,
-    height: null,
+    width: undefined,
+    height: undefined,
   },
   overlayContainer: {
     flex: 1,
@@ -206,7 +209,7 @@ const styles = StyleSheet.create({
 });
 Avatar.defaultProps = {
   showEditButton: false,
-  onEditPress: null,
+  onEditPress: undefined,
   size: 'small',
   editButton: defaultEditButton,
   ImageComponent: RNImage,

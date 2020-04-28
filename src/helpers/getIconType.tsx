@@ -15,7 +15,7 @@ const customIcons = {};
 export const registerCustomIconType = (id, customIcon) => {
   customIcons[id] = customIcon;
 };
-export default type => {
+export default (type) => {
   switch (type) {
     case 'zocial':
       return ZocialIcon;

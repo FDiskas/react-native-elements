@@ -7,6 +7,7 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+
 import Text from '../text/Text';
 import fonts from '../config/fonts';
 import { withTheme } from '../config';

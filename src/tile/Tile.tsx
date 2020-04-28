@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, Dimensions, TouchableOpacity } from 'react-native';
+
 import { withTheme } from '../config';
 import Image from '../image/Image';
 import Text from '../text/Text';
@@ -26,7 +27,7 @@ type TileProps = {
   imageProps?: object;
   ImageComponent?: JSX.Element;
 };
-const Tile: React.SFC<TileProps> = props => {
+const Tile: React.SFC<TileProps> = (props) => {
   const {
     featured,
     imageSrc,

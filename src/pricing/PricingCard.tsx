@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { View, Platform, StyleSheet } from 'react-native';
+
 import { normalizeText } from '../helpers';
 import { fonts, withTheme } from '../config';
 import Text from '../text/Text';
@@ -19,7 +20,7 @@ type PricingCardProps = {
   infoStyle?: any;
   theme?: object;
 };
-const PricingCard: React.SFC<PricingCardProps> = props => {
+const PricingCard: React.SFC<PricingCardProps> = (props) => {
   const { theme, ...rest } = props;
   const {
     containerStyle,
@@ -64,7 +65,7 @@ const PricingCard: React.SFC<PricingCardProps> = props => {
           {price}
         </Text>
 
-        {info.map(item => (
+        {info.map((item) => (
           <Text
             key={item}
             style={StyleSheet.flatten([styles.pricingInfo(theme), infoStyle])}
@@ -92,7 +93,7 @@ PricingCard.defaultProps = {
   info: [],
 };
 const styles = {
-  container: theme => ({
+  container: (theme) => ({
     margin: 15,
     marginBottom: 15,
     backgroundColor: 'white',
@@ -140,7 +141,7 @@ const styles = {
       },
     }),
   },
-  pricingInfo: theme => ({
+  pricingInfo: (theme) => ({
     textAlign: 'center',
     marginTop: 5,
     marginBottom: 5,

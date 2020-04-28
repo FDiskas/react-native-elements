@@ -9,6 +9,7 @@ import {
   StyleSheet,
 } from 'react-native';
 import Color from 'color';
+
 import { withTheme } from '../config';
 import { renderNode, conditionalStyle, color } from '../helpers';
 import Icon from '../icons/Icon';
@@ -40,6 +41,23 @@ type ButtonProps = {
   theme?: object;
 };
 class Button extends React.Component<ButtonProps, {}> {
+  static defaultProps = {
+    title: '',
+    iconRight: false,
+    TouchableComponent: Platform.select({
+      android: TouchableNativeFeedback,
+      default: TouchableOpacity,
+    }),
+    onPress: () => console.log('Please attach a method to this component'),
+    type: 'solid',
+    buttonStyle: {
+      borderRadius: 3,
+    },
+    disabled: false,
+    raised: false,
+    loading: false,
+  };
+
   componentDidMount() {
     const { linearGradientProps, ViewComponent } = this.props;
     if (linearGradientProps && !global.Expo && !ViewComponent) {
@@ -50,7 +68,7 @@ class Button extends React.Component<ButtonProps, {}> {
   }
   handleOnPress = () => {
     const { loading, onPress } = this.props;
-    if (!loading) {
+    if (!loading && onPress) {
       onPress();
     }
   };
@@ -58,7 +76,6 @@ class Button extends React.Component<ButtonProps, {}> {
     const {
       TouchableComponent,
       containerStyle,
-      onPress,
       buttonStyle,
       type,
       loading,
@@ -90,10 +107,7 @@ class Button extends React.Component<ButtonProps, {}> {
     const background =
       Platform.OS === 'android' && Platform.Version >= 21
         ? TouchableNativeFeedback.Ripple(
-            Color(titleStyle.color)
-              .alpha(0.32)
-              .rgb()
-              .string(),
+            Color(titleStyle.color).alpha(0.32).rgb().string(),
             false
           )
         : undefined;
@@ -176,22 +190,7 @@ class Button extends React.Component<ButtonProps, {}> {
     );
   }
 }
-Button.defaultProps = {
-  title: '',
-  iconRight: false,
-  TouchableComponent: Platform.select({
-    android: TouchableNativeFeedback,
-    default: TouchableOpacity,
-  }),
-  onPress: () => console.log('Please attach a method to this component'),
-  type: 'solid',
-  buttonStyle: {
-    borderRadius: 3,
-  },
-  disabled: false,
-  raised: false,
-  loading: false,
-};
+
 const styles = {
   button: (type, theme) => ({
     flexDirection: 'row',
@@ -215,7 +214,7 @@ const styles = {
       borderColor: color(theme.colors.disabled).darken(0.3),
     }),
   }),
-  disabledTitle: theme => ({
+  disabledTitle: (theme) => ({
     color: color(theme.colors.disabled).darken(0.3),
   }),
   title: (type, theme) => ({
@@ -236,7 +235,7 @@ const styles = {
   iconContainer: {
     marginHorizontal: 5,
   },
-  raised: type =>
+  raised: (type) =>
     type !== 'clear' && {
       backgroundColor: '#fff',
       ...Platform.select({

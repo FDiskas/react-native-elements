@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { TouchableOpacity, View, StyleSheet, Dimensions } from 'react-native';
+
 import { BackgroundImage, withTheme } from '../config';
 import { renderNode } from '../helpers';
 import Text from '../text/Text';
@@ -26,7 +27,7 @@ type FeaturedTileProps = {
   ImageComponent?: React.ReactNode;
   imageProps?: object;
 };
-const FeaturedTile: React.SFC<FeaturedTileProps> = props => {
+const FeaturedTile: React.SFC<FeaturedTileProps> = (props) => {
   const {
     title,
     icon,

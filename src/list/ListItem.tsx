@@ -6,21 +6,68 @@ import {
   Switch,
   TouchableHighlight,
   View,
+  ViewStyle,
+  TextStyle,
+  TextProperties,
+  ViewProperties,
+  ViewComponent,
+  TouchableHighlightComponent,
 } from 'react-native';
 
 import { renderNode, nodeType } from '../helpers';
-import { ViewPropTypes, TextPropTypes, withTheme } from '../config';
-
+import { withTheme } from '../config';
 import Avatar from '../avatar/Avatar';
 import Badge from '../badge/Badge';
 import CheckBox from '../checkbox/CheckBox';
 import Icon from '../icons/Icon';
 import Text from '../text/Text';
 import ButtonGroup from '../buttons/ButtonGroup';
-import Input from '../input/Input';
+import Input, { InputProps } from '../input/Input';
+import { Theme } from '@src/config/theme';
 
 const ANDROID_SECONDARY = 'rgba(0, 0, 0, 0.54)';
 
+interface ListItemProps {
+  containerStyle: ViewStyle;
+  contentContainerStyle: ViewStyle;
+  rightContentContainerStyle: ViewStyle;
+  Component: typeof ViewComponent | typeof TouchableHighlightComponent;
+  onPress: () => {};
+  onLongPress: () => {};
+  title?: React.ReactNode;
+  titleStyle: TextStyle;
+  titleProps: TextStyle;
+  subtitle: React.ReactNode;
+  subtitleStyle: TextStyle;
+  subtitleProps: TextProperties;
+  leftIcon: React.ReactNode;
+  leftAvatar: React.ReactNode;
+  leftElement: React.ReactNode;
+  rightIcon: React.ReactNode;
+  rightAvatar: React.ReactNode;
+  rightElement: React.ReactNode;
+  rightTitle: React.ReactNode;
+  rightTitleStyle: TextStyle;
+  rightTitleProps: TextProperties;
+  rightSubtitle: React.ReactNode;
+  rightSubtitleStyle: TextStyle;
+  rightSubtitleProps: TextProperties;
+  input: InputProps;
+  buttonGroup: PropTypes.object;
+  switch: PropTypes.object;
+  checkBox: PropTypes.object;
+  badge: PropTypes.object;
+  chevron: React.ReactNode;
+  checkmark: React.ReactNode;
+  disabled: boolean;
+  disabledStyle: TextStyle;
+  topDivider: boolean;
+  bottomDivider: boolean;
+  pad?: number;
+  linearGradientProps: PropTypes.object;
+  ViewComponent: React.ComponentClass;
+  theme: Theme;
+}
 const chevronDefaultProps = {
   type: Platform.OS === 'ios' ? 'ionicon' : 'material',
   color: '#D1D1D6',
@@ -28,7 +75,7 @@ const chevronDefaultProps = {
   size: 16,
 };
 
-const checkmarkDefaultProps = theme => ({
+const checkmarkDefaultProps = (theme) => ({
   name: 'check',
   size: 20,
   color: theme.colors.primary,
@@ -40,19 +87,19 @@ const renderText = (content, defaultProps, style) =>
     style: StyleSheet.flatten([style, defaultProps && defaultProps.style]),
   });
 
-const renderAvatar = content =>
+const renderAvatar = (content) =>
   renderNode(Avatar, content, {
     size: 40,
     rounded: true,
   });
 
-const renderIcon = content =>
+const renderIcon = (content) =>
   renderNode(Icon, content, {
     color: Platform.OS === 'ios' ? null : ANDROID_SECONDARY,
     size: 24,
   });
 
-const ListItem = props => {
+const ListItem = (props: ListItemProps) => {
   const {
     title,
     titleStyle,
@@ -217,8 +264,13 @@ const ListItem = props => {
   );
 };
 
+ListItem.defaultProps = {
+  pad: 16,
+  title: '',
+};
+
 const styles = {
-  container: theme => ({
+  container: (theme) => ({
     ...Platform.select({
       ios: {
         padding: 14,
@@ -299,61 +351,20 @@ const styles = {
   },
 };
 
-ListItem.propTypes = {
-  containerStyle: ViewPropTypes.style,
-  contentContainerStyle: ViewPropTypes.style,
-  rightContentContainerStyle: ViewPropTypes.style,
-  Component: PropTypes.elementType,
-  onPress: PropTypes.func,
-  onLongPress: PropTypes.func,
-  title: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
-  titleStyle: TextPropTypes.style,
-  titleProps: PropTypes.object,
-  subtitle: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
-  subtitleStyle: TextPropTypes.style,
-  subtitleProps: PropTypes.object,
-  leftIcon: nodeType,
-  leftAvatar: nodeType,
-  leftElement: nodeType,
-  rightIcon: nodeType,
-  rightAvatar: nodeType,
-  rightElement: nodeType,
-  rightTitle: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
-  rightTitleStyle: TextPropTypes.style,
-  rightTitleProps: PropTypes.object,
-  rightSubtitle: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
-  rightSubtitleStyle: TextPropTypes.style,
-  rightSubtitleProps: PropTypes.object,
-  input: PropTypes.object,
-  buttonGroup: PropTypes.object,
-  switch: PropTypes.object,
-  checkBox: PropTypes.object,
-  badge: PropTypes.object,
-  chevron: nodeType,
-  checkmark: nodeType,
-  disabled: PropTypes.bool,
-  disabledStyle: ViewPropTypes.style,
-  topDivider: PropTypes.bool,
-  bottomDivider: PropTypes.bool,
-  pad: PropTypes.number,
-  linearGradientProps: PropTypes.object,
-  ViewComponent: PropTypes.elementType,
-  theme: PropTypes.object,
-};
+ListItem.propTypes = {};
 
-ListItem.defaultProps = {
-  pad: 16,
-  title: '',
-};
+interface PadViewProps {
+  children: React.ReactNode;
+  pad: number;
+  Component: React.ComponentClass;
+}
+class PadView extends React.Component<PadViewProps> {
+  _root = React.createRef<View>();
 
-class PadView extends React.Component {
-  constructor(props) {
-    super(props);
-    this._root = React.createRef();
-  }
-
-  setNativeProps = nativeProps => {
-    this._root.current.setNativeProps(nativeProps);
+  setNativeProps = (nativeProps) => {
+    if (this._root.current) {
+      this._root.current.setNativeProps(nativeProps);
+    }
   };
 
   render() {
@@ -373,11 +384,7 @@ class PadView extends React.Component {
   }
 }
 
-PadView.propTypes = {
-  children: PropTypes.node,
-  pad: PropTypes.number,
-  Component: PropTypes.elementType,
-};
+PadView.propTypes = {};
 
 export { ListItem };
 export default withTheme(ListItem, 'ListItem');

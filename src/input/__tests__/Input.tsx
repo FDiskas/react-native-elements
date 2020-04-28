@@ -126,7 +126,7 @@ describe('Input component', () => {
       expect(toJson(component)).toMatchSnapshot();
     });
     it('inputComponent', () => {
-      const CustomComponent = props => <View {...props}>Custom!</View>;
+      const CustomComponent = (props) => <View {...props}>Custom!</View>;
       const component = shallow(
         <Input theme={theme} InputComponent={CustomComponent} />
       );

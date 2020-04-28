@@ -3,6 +3,11 @@
 // https://material.io/guidelines/components/buttons.html#buttons-raised-buttons
 // https://material.angularjs.org/latest/demo/button
 // Core
+import {
+  AirbnbRating as BaseAirbnbRating,
+  Rating as BaseRating,
+} from 'react-native-ratings';
+
 import Button from './buttons/Button';
 import Input from './input/Input';
 import Icon from './icons/Icon';
@@ -25,10 +30,6 @@ import Avatar from './avatar/Avatar';
 import Header from './header/Header';
 import PricingCard from './pricing/PricingCard';
 import Tooltip from './tooltip/Tooltip';
-import {
-  AirbnbRating as BaseAirbnbRating,
-  Rating as BaseRating,
-} from 'react-native-ratings';
 // helpers
 import Text from './text/Text';
 import {

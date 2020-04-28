@@ -6,6 +6,7 @@ import {
   TouchableWithoutFeedback,
   Modal,
 } from 'react-native';
+
 import { ViewPropTypes, withTheme } from '../config';
 type OverlayProps = {
   isVisible: boolean;

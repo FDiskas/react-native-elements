@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+
 import { withTheme } from '../config';
 import { renderNode } from '../helpers';
 type BadgeProps = {

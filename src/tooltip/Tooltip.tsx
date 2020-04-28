@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { TouchableOpacity, Modal, View, StatusBar } from 'react-native';
+
 import { withTheme } from '../config';
 import { ScreenWidth, ScreenHeight, isIOS } from '../helpers';
 import Triangle from './Triangle';
@@ -57,7 +58,7 @@ class Tooltip extends React.PureComponent<TooltipProps, TooltipState> {
   toggleTooltip = () => {
     const { onClose } = this.props;
     this.getElementPosition();
-    this.setState(prevState => {
+    this.setState((prevState) => {
       if (prevState.isVisible && !isIOS) {
         onClose && onClose();
       }
@@ -111,7 +112,7 @@ class Tooltip extends React.PureComponent<TooltipProps, TooltipState> {
       ...containerStyle,
     };
   };
-  renderPointer = tooltipY => {
+  renderPointer = (tooltipY) => {
     const { yOffset, xOffset, elementHeight, elementWidth } = this.state;
     const { backgroundColor, pointerColor } = this.props;
     const pastMiddleLine = yOffset > tooltipY;
@@ -133,7 +134,7 @@ class Tooltip extends React.PureComponent<TooltipProps, TooltipState> {
       </View>
     );
   };
-  renderContent = withTooltip => {
+  renderContent = (withTooltip) => {
     const { popover, withPointer, toggleOnPress, highlightColor } = this.props;
     if (!withTooltip) {
       return this.wrapWithPress(toggleOnPress, this.props.children);
@@ -202,7 +203,7 @@ class Tooltip extends React.PureComponent<TooltipProps, TooltipState> {
     return (
       <View
         collapsable={false}
-        ref={e => {
+        ref={(e) => {
           this.renderedElement = e;
         }}
       >

@@ -29,10 +29,7 @@ describe('Overlay', () => {
         <Text>I'm in an Overlay</Text>
       </Overlay>
     );
-    wrapper
-      .dive()
-      .find({ testID: 'RNE__Overlay__backdrop' })
-      .simulate('press');
+    wrapper.dive().find({ testID: 'RNE__Overlay__backdrop' }).simulate('press');
   });
   it('should click the backdrop and use passed handler', () => {
     const onBackdropPress = jest.fn();
@@ -41,10 +38,7 @@ describe('Overlay', () => {
         <Text>I'm in an Overlay</Text>
       </Overlay>
     );
-    wrapper
-      .dive()
-      .find({ testID: 'RNE__Overlay__backdrop' })
-      .simulate('press');
+    wrapper.dive().find({ testID: 'RNE__Overlay__backdrop' }).simulate('press');
     expect(onBackdropPress).toHaveBeenCalled();
   });
   it('should apply values from theme', () => {

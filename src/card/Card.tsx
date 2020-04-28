@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Platform, StyleSheet } from 'react-native';
+
 import normalize from '../helpers/normalizeText';
 import { fonts, withTheme } from '../config';
 import Text from '../text/Text';
@@ -23,7 +24,7 @@ type CardProps = {
   titleNumberOfLines?: number;
   theme?: object;
 };
-const Card: React.SFC<CardProps> = props => {
+const Card: React.SFC<CardProps> = (props) => {
   const {
     children,
     containerStyle,
@@ -136,7 +137,7 @@ const Card: React.SFC<CardProps> = props => {
   );
 };
 const styles = {
-  container: theme => ({
+  container: (theme) => ({
     backgroundColor: 'white',
     borderWidth: 1,
     padding: 15,
@@ -187,7 +188,7 @@ const styles = {
   divider: {
     marginBottom: 15,
   },
-  cardTitle: theme => ({
+  cardTitle: (theme) => ({
     fontSize: normalize(14),
     color: theme.colors.grey1,
     ...Platform.select({

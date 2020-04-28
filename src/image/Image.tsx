@@ -7,6 +7,7 @@ import {
   Platform,
   ImageStyle,
 } from 'react-native';
+
 import { withTheme } from '../config';
 type ImageProps = {
   ImageComponent?: JSX.Element;

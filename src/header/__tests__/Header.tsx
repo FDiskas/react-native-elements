@@ -75,10 +75,7 @@ describe('Header Component', () => {
   it('should allow to pass backgroundColor through prop', () => {
     const component = shallow(<Header theme={theme} backgroundColor="#aaa" />);
     expect(
-      component
-        .find(ImageBackground)
-        .first()
-        .props().style.backgroundColor
+      component.find(ImageBackground).first().props().style.backgroundColor
     ).toBe('#aaa');
   });
   it('should allow to pass styles through containerStyle prop', () => {
@@ -86,10 +83,7 @@ describe('Header Component', () => {
       <Header theme={theme} containerStyle={{ backgroundColor: '#ccc' }} />
     );
     expect(
-      component
-        .find(ImageBackground)
-        .at(0)
-        .props().style.backgroundColor
+      component.find(ImageBackground).at(0).props().style.backgroundColor
     ).toBe('#ccc');
   });
   it('should accept props for StatusBar', () => {
@@ -120,12 +114,9 @@ describe('Header Component', () => {
     const component = shallow(
       <Header theme={theme} backgroundImage={{ uri: 'http://google.com' }} />
     );
-    expect(
-      component
-        .find(ImageBackground)
-        .first()
-        .props().source
-    ).toEqual({ uri: 'http://google.com' });
+    expect(component.find(ImageBackground).first().props().source).toEqual({
+      uri: 'http://google.com',
+    });
   });
   it('should render with backgroundImage', () => {
     const component = shallow(
@@ -138,12 +129,9 @@ describe('Header Component', () => {
     const component = shallow(
       <Header theme={theme} backgroundImageStyle={{ opacity: 0.1 }} />
     );
-    expect(
-      component
-        .find(ImageBackground)
-        .first()
-        .props().imageStyle
-    ).toEqual({ opacity: 0.1 });
+    expect(component.find(ImageBackground).first().props().imageStyle).toEqual({
+      opacity: 0.1,
+    });
   });
   it('should render with backgroundImageStyle', () => {
     const component = shallow(

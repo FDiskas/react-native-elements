@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, Animated, Easing, PanResponder } from 'react-native';
+
 import { withTheme } from '../config';
 const TRACK_SIZE = 4;
 const THUMB_SIZE = 20;
@@ -215,13 +216,13 @@ class Slider extends Component<SliderProps, SliderState> {
       });
     }
   }
-  measureContainer = x => {
+  measureContainer = (x) => {
     this.handleMeasure('containerSize', x);
   };
-  measureTrack = x => {
+  measureTrack = (x) => {
     this.handleMeasure('trackSize', x);
   };
-  measureThumb = x => {
+  measureThumb = (x) => {
     this.handleMeasure('thumbSize', x);
   };
   getValue(gestureState) {
@@ -471,10 +472,10 @@ const styles = StyleSheet.create({
     height: THUMB_SIZE,
     borderRadius: THUMB_SIZE / 2,
   },
-  thumbHorizontal: height => ({
+  thumbHorizontal: (height) => ({
     top: 22 + (height ? (height - 4) / 2 : 0),
   }),
-  thumbVertical: width => ({
+  thumbVertical: (width) => ({
     left: 22 + (width ? (width - 4) / 2 : 0),
   }),
   touchArea: {

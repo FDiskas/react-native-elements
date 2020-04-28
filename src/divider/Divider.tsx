@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, ViewStyle } from 'react-native';
+
 import { withTheme } from '../config';
 type DividerProps = {
   style?: ViewStyle;
@@ -12,7 +13,7 @@ const Divider: React.SFC<DividerProps> = ({ style, theme, ...rest }) => (
   />
 );
 const styles = {
-  container: theme => ({
+  container: (theme) => ({
     backgroundColor: theme.colors.divider,
     height: StyleSheet.hairlineWidth,
   }),

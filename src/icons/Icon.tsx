@@ -7,9 +7,10 @@ import {
   TouchableNativeFeedback,
 } from 'react-native';
 import Color from 'color';
+
 import getIconType from '../helpers/getIconType';
 import { withTheme } from '../config';
-type IconProps = {
+export type IconProps = {
   type?: string;
   name?: string;
   size?: number;
@@ -27,7 +28,7 @@ type IconProps = {
   solid?: boolean;
   brand?: boolean;
 };
-const Icon: React.SFC<IconProps> = props => {
+const Icon: React.SFC<IconProps> = (props) => {
   const {
     type,
     name,
@@ -67,10 +68,7 @@ const Icon: React.SFC<IconProps> = props => {
   if (Platform.OS === 'android' && !attributes.background) {
     if (Platform.Version >= 21) {
       attributes.background = TouchableNativeFeedback.Ripple(
-        Color(color)
-          .alpha(0.2)
-          .rgb()
-          .string(),
+        Color(color).alpha(0.2).rgb().string(),
         true
       );
     }
@@ -92,12 +90,12 @@ const Icon: React.SFC<IconProps> = props => {
     >
       <Component
         {...attributes}
-        {...onPress && {
+        {...(onPress && {
           onPress,
           disabled,
           underlayColor: reverse ? color : underlayColor,
           activeOpacity: 0.3,
-        }}
+        })}
       >
         <View
           style={StyleSheet.flatten([

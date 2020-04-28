@@ -1,5 +1,6 @@
 import { ViewPropTypes, TextProps } from 'react-native';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
+
 import BackgroundImage from './BackgroundImage';
 import colors from './colors';
 import fonts from './fonts';

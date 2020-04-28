@@ -1,16 +1,17 @@
 import React from 'react';
-import { ActivityIndicator, View, Text, StyleSheet } from 'react-native';
-import { ViewPropTypes } from '../config';
-import { renderNode, nodeType } from '../helpers';
+import { ActivityIndicator, View, StyleSheet } from 'react-native';
+
+import { renderNode } from '../helpers';
 import Input from '../input/Input';
 import Icon from '../icons/Icon';
-const defaultSearchIcon = theme => ({
+import { Theme } from '@src/config/theme';
+const defaultSearchIcon = (theme: Theme) => ({
   type: 'material',
   size: 18,
   name: 'search',
   color: theme.colors.grey3,
 });
-const defaultClearIcon = theme => ({
+const defaultClearIcon = (theme: Theme) => ({
   type: 'material',
   size: 18,
   name: 'clear',
@@ -34,12 +35,24 @@ type SearchBarProps = {
   placeholderTextColor?: string;
   lightTheme?: boolean;
   round?: boolean;
-  theme?: object;
+  theme: Theme;
 };
 type SearchBarState = {
   isEmpty: boolean;
 };
 class SearchBar extends React.Component<SearchBarProps, SearchBarState> {
+  input = React.createRef<typeof Input>();
+  static defaultProps = {
+    value: '',
+    loadingProps: {},
+    showLoading: false,
+    lightTheme: false,
+    round: false,
+    onClear: () => null,
+    onFocus: () => null,
+    onBlur: () => null,
+    onChangeText: () => null,
+  };
   constructor(props) {
     super(props);
     const { value } = props;
@@ -48,25 +61,33 @@ class SearchBar extends React.Component<SearchBarProps, SearchBarState> {
     };
   }
   focus = () => {
-    this.input.focus();
+    this.input.current.focus();
   };
   blur = () => {
-    this.input.blur();
+    this.input.current.blur();
   };
   clear = () => {
-    this.input.clear();
+    this.input.current.clear();
     this.onChangeText('');
-    this.props.onClear();
+    if (this.props.onClear) {
+      this.props.onClear();
+    }
   };
   onFocus = () => {
-    this.props.onFocus();
+    if (this.props.onFocus) {
+      this.props.onFocus();
+    }
     this.setState({ isEmpty: this.props.value === '' });
   };
   onBlur = () => {
-    this.props.onBlur();
+    if (this.props.onBlur) {
+      this.props.onBlur();
+    }
   };
-  onChangeText = text => {
-    this.props.onChangeText(text);
+  onChangeText = (text: string) => {
+    if (this.props.onChangeText) {
+      this.props.onChangeText(text);
+    }
     this.setState({ isEmpty: text === '' });
   };
   render() {
@@ -102,9 +123,7 @@ class SearchBar extends React.Component<SearchBarProps, SearchBarState> {
           onFocus={this.onFocus}
           onBlur={this.onBlur}
           onChangeText={this.onChangeText}
-          ref={input => {
-            this.input = input;
-          }}
+          ref={this.input}
           placeholderTextColor={placeholderTextColor}
           inputStyle={StyleSheet.flatten([
             styles.inputStyle(theme),
@@ -149,19 +168,9 @@ class SearchBar extends React.Component<SearchBarProps, SearchBarState> {
     );
   }
 }
-SearchBar.defaultProps = {
-  value: '',
-  loadingProps: {},
-  showLoading: false,
-  lightTheme: false,
-  round: false,
-  onClear: () => null,
-  onFocus: () => null,
-  onBlur: () => null,
-  onChangeText: () => null,
-};
+
 const styles = {
-  container: theme => ({
+  container: (theme) => ({
     borderTopWidth: 1,
     borderBottomWidth: 1,
     borderBottomColor: '#000',
@@ -175,7 +184,7 @@ const styles = {
   leftIconContainerStyle: {
     marginLeft: 8,
   },
-  containerLight: theme => ({
+  containerLight: (theme) => ({
     borderTopColor: '#e1e1e1',
     borderBottomColor: '#e1e1e1',
     backgroundColor: theme.colors.grey5,
@@ -183,18 +192,18 @@ const styles = {
   inputContainer: {
     paddingHorizontal: 0,
   },
-  inputStyle: theme => ({
+  inputStyle: (theme) => ({
     color: theme.colors.grey3,
     marginLeft: 10,
   }),
-  inputContentContainer: theme => ({
+  inputContentContainer: (theme) => ({
     borderBottomWidth: 0,
     borderRadius: 3,
     overflow: 'hidden',
     minHeight: 30,
     backgroundColor: theme.colors.searchBg,
   }),
-  inputContentContainerLight: theme => ({
+  inputContentContainerLight: (theme) => ({
     backgroundColor: theme.colors.grey4,
   }),
   round: {

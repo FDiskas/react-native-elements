@@ -17,19 +17,13 @@ describe('Button Component', () => {
     console.log = jest.fn();
     const wrapper = shallow(<Button theme={theme} />);
     // Call default onPress
-    wrapper
-      .find('TouchableOpacity')
-      .props()
-      .onPress();
+    wrapper.find('TouchableOpacity').props().onPress();
     expect(console.log.mock.calls[0][0]).toBe(
       'Please attach a method to this component'
     );
     wrapper.setProps({ onPress });
     // Call our custom onPress
-    wrapper
-      .find('TouchableOpacity')
-      .props()
-      .onPress();
+    wrapper.find('TouchableOpacity').props().onPress();
     expect(onPress).toHaveBeenCalled();
   });
   it('should not be call onPress events when loading is true', () => {

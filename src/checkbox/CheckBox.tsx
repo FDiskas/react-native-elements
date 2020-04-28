@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { StyleSheet, TouchableOpacity, View, Platform } from 'react-native';
+
 import TextElement from '../text/Text';
 import CheckBoxIcon from './CheckBoxIcon';
 import { fonts, withTheme } from '../config';
@@ -18,7 +19,7 @@ type CheckBoxProps = {
   checkedTitle?: string;
   fontFamily?: string;
 };
-const CheckBox: React.SFC<CheckBoxProps> = props => {
+const CheckBox: React.SFC<CheckBoxProps> = (props) => {
   const { theme, ...rest } = props;
   const {
     Component,
@@ -116,7 +117,7 @@ const styles = {
     backgroundColor: '#fafafa',
     borderColor: '#ededed',
   },
-  text: theme => ({
+  text: (theme) => ({
     marginLeft: 10,
     marginRight: 10,
     color: theme.colors.grey1,

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { StyleSheet, View, ActivityIndicator } from 'react-native';
+
 import { renderNode } from '../helpers';
 import Input from '../input/Input';
 import Icon from '../icons/Icon';
@@ -84,7 +85,8 @@ class SearchBar extends React.Component<SearchBarProps, SearchBarState> {
     this.props.onBlur();
     this.setState({ hasFocus: false });
   };
-  onChangeText = text => {
+
+  onChangeText = (text) => {
     this.props.onChangeText(text);
     this.setState({ isEmpty: text === '' });
   };
@@ -120,7 +122,7 @@ class SearchBar extends React.Component<SearchBarProps, SearchBarState> {
           onFocus={this.onFocus}
           onBlur={this.onBlur}
           onChangeText={this.onChangeText}
-          ref={input => {
+          ref={(input) => {
             this.input = input;
           }}
           containerStyle={{ paddingHorizontal: 0 }}

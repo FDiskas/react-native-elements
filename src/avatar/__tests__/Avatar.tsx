@@ -143,7 +143,7 @@ describe('Avatar Component', () => {
     });
   });
   describe('Placeholders', () => {
-    it('renders title if given', done => {
+    it('renders title if given', (done) => {
       shallow(
         <Avatar
           source={{ uri: 'https://i.imgur.com/0y8Ftya.jpg' }}

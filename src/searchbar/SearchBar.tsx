@@ -1,4 +1,5 @@
 import * as React from 'react';
+
 import { withTheme } from '../config';
 import IOSSearchBar from './SearchBar-ios';
 import AndroidSearchBar from './SearchBar-android';
@@ -33,7 +34,7 @@ class SearchBar extends React.Component<SearchBarProps, {}> {
       SEARCHBAR_COMPONENTS[this.props.platform] || DefaultSearchBar;
     return (
       <Component
-        ref={ref => {
+        ref={(ref) => {
           this.searchbar = ref;
         }}
         {...this.props}

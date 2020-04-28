@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Text, StyleSheet, Platform, TextStyle } from 'react-native';
+
 import { fonts, withTheme } from '../config';
 import { patchWebProps } from '../helpers';
 import normalize from '../helpers/normalizeText';
